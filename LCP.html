@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loyalty Card Program | Daylight Detailing</title>
+  <meta name="description" content="Daylight Detailing Loyalty Card - Get rewards and discounts with every detail." />
+
+  <style>
+    :root {
+      --primary: #3890F0;
+      --gold: #D6B25E;
+      --ink: #0B1220;
+      --muted: #4B5563;
+      --bg: #FFFFFF;
+      --soft: #F5F8FF;
+      --line: rgba(11,18,32,.12);
+      --shadow: 0 12px 30px rgba(11,18,32,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .9rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #1E6FE2);
+      color: white;
+      box-shadow: 0 10px 24px rgba(56,144,240,.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-outline {
+      background: white;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .btn-outline:hover { border-color: rgba(56,144,240,.45); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .9rem 0;
+      gap: 1.5rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .logoMark {
+      width: 65px;
+      height: 65px;
+      border-radius: 14px;
+      background: white url("Images/Logo.png") center/contain no-repeat;
+      box-shadow: 0 10px 24px rgba(56,144,240,.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .1px;
+      margin-top: 0px;
+      font-size: .85rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(900px 400px at 15% 10%, rgba(56,144,240,.22), transparent 60%),
+                  linear-gradient(180deg, var(--soft), #FFFFFF 55%);
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      letter-spacing: -.6px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+      max-width: 56ch;
+    }
+
+    section { padding: 3.1rem 0; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      margin: 0 0 .5rem;
+      letter-spacing: -.3px;
+    }
+    .section-title p {
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .card-visual {
+      background: white;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 38px rgba(11,18,32,.12);
+      padding: 2rem;
+      margin: 2rem 0;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .card-visual img {
+      max-width: 350px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(11,18,32,.15);
+    }
+    .card-visual-text h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      letter-spacing: -.3px;
+    }
+    .card-visual-text p {
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.7;
+      margin: 0 0 1rem;
+    }
+
+    .how-it-works {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .how-it-works h3 {
+      font-size: 1.4rem;
+      margin: 0 0 1.5rem;
+      letter-spacing: -.2px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .step {
+      background: white;
+      border: 1px solid rgba(11,18,32,.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), #1E6FE2);
+      color: white;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 1.4rem;
+      margin: 0 auto 1rem;
+    }
+    .step h4 {
+      font-size: 1.1rem;
+      margin: 0 0 .5rem;
+      letter-spacing: -.1px;
+    }
+    .step p {
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0;
+      font-size: .95rem;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+    .benefit-card {
+      background: white;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 10px 22px rgba(11,18,32,.06);
+    }
+    .benefit-card h4 {
+      font-size: 1.15rem;
+      margin: 0 0 .5rem;
+      letter-spacing: -.1px;
+    }
+    .benefit-card p {
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0;
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+    .discount-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), #1E6FE2);
+      color: white;
+      padding: .4rem .8rem;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--ink), #101B33);
+      color: white;
+      border-radius: calc(var(--radius) + 6px);
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .cta-section h3 {
+      font-size: 1.4rem;
+      margin: 0 0 1rem;
+      letter-spacing: -.2px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,.9);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+      max-width: 60ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.88);
+      padding: 2.4rem 0;
+      margin-top: 2rem;
+    }
+    footer a { color: rgba(255,255,255,.88); }
+    footer a:hover { color: white; }
+    .fineprint {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,.12);
+      font-weight: 650;
+      color: rgba(255,255,255,.72);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .card-visual {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      .card-visual img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="website.html" aria-label="Daylight Detailing home">
+          <span class="logoMark" aria-hidden="true"></span>
+          <span>
+            Daylight Detailing
+            <small>Loyalty Rewards</small>
+          </span>
+        </a>
+        <a class="btn btn-outline" href="website.html">Back to Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Loyalty Card Program</h1>
+        <p>Get rewarded for every detail. Every visit brings you closer to exclusive discounts and a new premium card.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>Your Loyalty Card</h2>
+          <p>Here is a visual demonstration of the Daylight Detailing loyalty card</p>
+        </div>
+
+        <div class="card-visual">
+          <img src="Images/Loyalty Card.PNG" alt="Daylight Detailing Loyalty Card" />
+          <div class="card-visual-text">
+            <h3>Exclusive Member Benefits</h3>
+            <p>When you book a service through us, we will provide a loyalty card with your unique written reference number. Every time you display your loyalty card to a detailer at any of our detailing services, we will fill out 1 of 5 slots with a unique sequence of numbers.</p>
+            <p style="color: var(--ink); font-weight: 800;">Your progress is tracked across every visit—5 stamps to unlock amazing rewards!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>How It Works</h2>
+          <p>Here's the simple process</p>
+        </div>
+
+        <div class="how-it-works">
+          <h3>Your Loyalty Journey</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h4>Book a Service</h4>
+              <p>Choose from our range of detailing packages and book your first appointment.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h4>Receive Your Card</h4>
+              <p>Get your personalized loyalty card with your unique reference number.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h4>Get Stamped</h4>
+              <p>Show your card at each detail—we fill one slot per visit with a unique sequence.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <h4>Unlock Rewards</h4>
+              <p>Reach milestones for exclusive discounts and a brand new card.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>Reward Milestones</h2>
+          <p>The more you detail, the more you save</p>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit-card">
+            <h4>🌟 Visit 1-2</h4>
+            <p>Build your loyalty foundation. Every detail counts toward your rewards!</p>
+            <p style="color: var(--ink); font-weight: 700; margin-top: .8rem;">Keep visiting to unlock special offers</p>
+          </div>
+
+          <div class="benefit-card">
+            <h4>✨ Visit 3</h4>
+            <p>You're a regular! Celebrate your commitment to premium car care.</p>
+            <span class="discount-badge">10% Discount</span>
+          </div>
+
+          <div class="benefit-card">
+            <h4>👑 Visit 5</h4>
+            <p>VIP Status achieved! You're one of our most valued customers.</p>
+            <span class="discount-badge">20% Discount + New Card</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-section">
+          <h3>Ready to Start Your Loyalty Journey?</h3>
+          <p>Book your first detail service today and receive your personalized loyalty card. Every visit brings you closer to exclusive rewards!</p>
+          <a class="btn btn-primary" href="website.html#contact">Get a Quote</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:.8rem; margin-bottom:.65rem;">
+          <span class="logoMark" aria-hidden="true" style="width:50px;height:50px; border-radius:12px;"></span>
+          <div style="font-weight:1000; font-size:1.1rem;">Daylight Detailing</div>
+        </div>
+        <div style="color: rgba(255,255,255,.72); font-weight:650; max-width: 55ch; margin: 0 auto;">
+          Premium mobile detailing with an aquatic-blue, clean-gold finish — built for trust, speed, and conversions.
+        </div>
+      </div>
+
+      <div class="fineprint">
+        <div>© <span id="year"></span> Daylight Detailing. All rights reserved.</div>
+        <div style="opacity:.9; margin-top: .5rem;">ABN: 83 300 980 958</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daylight Detailing | Mobile Car Detailing & Paint Protection</title>
+  <meta name="description" content="Daylight Detailing — premium mobile car detailing, paint correction, interior detailing, and protection packages." />
+
+  <style>
+    :root {
+      /* Daylight Detailing theme */
+      --primary: #3890F0;     /* your aquatic blue */
+      --gold: #D6B25E;
+      --ink: #0B1220;
+      --muted: #4B5563;
+      --bg: #FFFFFF;
+      --soft: #F5F8FF;
+      --line: rgba(11,18,32,.12);
+      --shadow: 0 12px 30px rgba(11,18,32,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; height: auto; object-fit: cover; width: 100%; }
+
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: .55rem;
+      padding: .9rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #1E6FE2);
+      color: white;
+      box-shadow: 0 10px 24px rgba(56,144,240,.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(255,255,255,.08);
+      color: white;
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn-outline {
+      background: white;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .btn-outline:hover { border-color: rgba(56,144,240,.45); }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      background: rgba(56,144,240,.12);
+      color: #0A4DAA;
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    /* Ticker styles */
+    .ticker {
+      width: 100%;
+      overflow: hidden;
+      background: #111;
+      color: white;
+      padding: 10px 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 60px;
+      width: max-content;
+      animation: ticker 25s linear infinite;
+    }
+    .ticker-track span {
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Top bar */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,.9);
+      font-size: .92rem;
+    }
+    .topbar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .55rem 0;
+      gap: 1rem;
+    }
+    .topbar .left, .topbar .right { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .topbar a { color: rgba(255,255,255,.9); }
+    .topbar a:hover { color: white; }
+    .icon {
+      width: 18px; height: 18px; display: inline-block;
+      vertical-align: -3px;
+      fill: currentColor;
+      opacity: .95;
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 0;
+      gap: 1.25rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: .75rem;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .logoMark {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, var(--primary), #1E6FE2);
+      box-shadow: 0 10px 24px rgba(56,144,240,.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .logoMark:after {
+      content: "";
+      position: absolute; inset: -10px;
+      background: linear-gradient(120deg, transparent 35%, rgba(214,178,94,.55), transparent 65%);
+      transform: rotate(10deg);
+      opacity: .65;
+    }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .1px;
+      margin-top: -2px;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-left: auto;
+      font-weight: 800;
+      color: rgba(11,18,32,.82);
+    }
+    .navlinks a { padding: .5rem .25rem; border-radius: 10px; }
+    .navlinks a:hover { color: var(--ink); }
+    .navactions { display: flex; align-items: center; gap: .7rem; }
+
+    /* Mobile nav */
+    .menuBtn { display: none; }
+    @media (max-width: 900px) {
+      .navlinks { display: none; }
+      .menuBtn { display: inline-flex; }
+    }
+    .mobileMenu {
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: .75rem 0 1rem;
+    }
+    .mobileMenu a {
+      display: block;
+      padding: .85rem .25rem;
+      font-weight: 900;
+      border-bottom: 1px solid rgba(11,18,32,.06);
+    }
+    .mobileMenu a:last-child { border-bottom: none; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(900px 400px at 15% 10%, rgba(56,144,240,.22), transparent 60%),
+        radial-gradient(700px 420px at 85% 30%, rgba(214,178,94,.20), transparent 60%),
+        linear-gradient(180deg, var(--soft), #FFFFFF 55%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero .grid { grid-template-columns: 1fr; padding: 2.4rem 0 2.2rem; }
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 3.4vw, 3.35rem);
+      line-height: 1.05;
+      margin: .75rem 0 1rem;
+      letter-spacing: -.6px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 1.25rem;
+      max-width: 54ch;
+    }
+    .hero .cta { display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
+    .trustrow {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      margin-top: 1.3rem;
+      color: rgba(11,18,32,.72);
+      font-weight: 800;
+      font-size: .95rem;
+    }
+    .trustrow span {
+      display: inline-flex; gap: .5rem; align-items: center;
+      padding: .5rem .7rem;
+      background: white;
+      border: 1px solid rgba(11,18,32,.08);
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(11,18,32,.06);
+    }
+
+    /* Hero card */
+    .heroCard {
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .heroCard .photo {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      background: #0B1220;
+    }
+    .heroCard .photo img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .heroCard .content {
+      padding: 1.1rem 1.1rem 1.15rem;
+    }
+    .heroCard h3 {
+      margin: 0 0 .4rem;
+      font-size: 1.1rem;
+      letter-spacing: -.2px;
+    }
+    .heroCard .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+      margin-top: .75rem;
+      font-size: .95rem;
+      color: rgba(11,18,32,.78);
+      font-weight: 800;
+    }
+    .heroCard .meta div {
+      background: rgba(56,144,240,.08);
+      border: 1px solid rgba(56,144,240,.16);
+      border-radius: 14px;
+      padding: .75rem .85rem;
+    }
+
+    /* Sections */
+    section { padding: 3.1rem 0; }
+    .sectionHead {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .sectionHead h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+      letter-spacing: -.3px;
+    }
+    .sectionHead p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 64ch;
+      font-weight: 600;
+    }
+
+    /* Service cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1050px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+
+    .card {
+      background: white;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 22px rgba(11,18,32,.06);
+      padding: 0;
+      transition: .2s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(11,18,32,.10); }
+    .card-img-wrapper {
+      width: 100%;
+      height: 135px;
+      overflow: hidden;
+    }
+    .card-body {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card .badge {
+      align-self: flex-start;
+      display: inline-flex;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .75rem;
+      background: rgba(214,178,94,.18);
+      border: 1px solid rgba(214,178,94,.30);
+      color: #6B4E07;
+      margin-bottom: .5rem;
+    }
+    .card h3 { margin: .25rem 0 .35rem; font-size: 1.12rem; }
+    .card p { margin: 0; color: var(--muted); font-weight: 600; font-size: 0.9rem; flex-grow: 1; }
+    .card a { display: inline-flex; margin-top: .8rem; font-weight: 900; color: #0A4DAA; }
+    .card a:hover { color: var(--primary); }
+
+    /* Pricing strip */
+    .strip {
+      background: linear-gradient(135deg, var(--ink), #101B33);
+      color: white;
+      border-radius: calc(var(--radius) + 6px);
+      padding: 1.35rem 1.35rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      position: relative;
+    }
+    .strip:before {
+      content: "";
+      position: absolute; inset: -120px;
+      background: radial-gradient(circle at 25% 20%, rgba(56,144,240,.35), transparent 55%),
+                  radial-gradient(circle at 70% 60%, rgba(214,178,94,.30), transparent 55%);
+      opacity: .9;
+    }
+    .strip > * { position: relative; }
+    .strip h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.2px; }
+    .strip p { margin: .15rem 0 0; opacity: .9; font-weight: 650; }
+    .strip .actions { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .gallery { grid-template-columns: 1fr; }
+    }
+    .ba-group {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .ba-group-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: .75rem;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .ba-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+    .tile {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(11,18,32,.10);
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #DDD;
+    }
+    .tile img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .tile-label {
+      position: absolute;
+      bottom: 8px; left: 8px;
+      background: rgba(11,18,32,0.75);
+      color: #fff;
+      padding: .2rem .5rem;
+      font-size: .75rem;
+      font-weight: 800;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+    .gallery-extra {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
+    .quoteCard {
+      background: white;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 22px rgba(11,18,32,.06);
+      padding: 1.25rem;
+    }
+    .quote {
+      font-size: 1.05rem;
+      font-weight: 750;
+      color: rgba(11,18,32,.86);
+      margin: .2rem 0 .85rem;
+    }
+    .who {
+      display: flex; align-items: center; gap: .8rem;
+      font-weight: 900;
+    }
+    .avatar {
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56,144,240,.85), rgba(214,178,94,.60));
+      border: 1px solid rgba(11,18,32,.08);
+    }
+    .stars { color: var(--gold); letter-spacing: 1px; font-weight: 900; }
+
+    /* Contact */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+    form {
+      background: white;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 22px rgba(11,18,32,.06);
+      padding: 1.1rem;
+    }
+    label { display: block; font-weight: 900; margin: .85rem 0 .35rem; }
+    input, textarea, select {
+      width: 100%;
+      padding: .85rem .9rem;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.14);
+      outline: none;
+      font-weight: 650;
+      background: white;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(56,144,240,.60);
+      box-shadow: 0 0 0 4px rgba(56,144,240,.14);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .infoBox {
+      background: linear-gradient(180deg, rgba(56,144,240,.10), rgba(214,178,94,.08));
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+    }
+    .infoRow {
+      display: flex; gap: .8rem; align-items: flex-start;
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+    .infoRow:last-child { border-bottom: none; }
+    .infoRow b { display: block; }
+    .infoRow span { color: var(--muted); font-weight: 650; display: block; margin-top: .1rem; }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.88);
+      padding: 2.4rem 0;
+      margin-top: 1rem;
+    }
+    .footgrid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .footgrid { grid-template-columns: 1fr; } }
+    footer a { color: rgba(255,255,255,.88); }
+    footer a:hover { color: white; }
+    .fineprint {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,.12);
+      font-weight: 650;
+      color: rgba(255,255,255,.72);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Utility */
+    .muted { color: var(--muted); }
+    .spacer { height: 10px; }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="wrap">
+        <div class="left">
+          <a href="https://www.instagram.com/daylightdetailing.au/" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+            </svg>
+            <span style="margin-left:.35rem;">Instagram</span>
+          </a>
+          <a href="https://www.facebook.com/people/Daylight-Detailing/61586377492326/" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13 22v-8h3l1-4h-4V7.5A1.5 1.5 0 0 1 14.5 6H17V2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4z"/>
+            </svg>
+            <span style="margin-left:.35rem;">Facebook</span>
+          </a>
+        </div>
+
+        <div class="right">
+          <a href="tel:+0491795610" title="Call Daylight Detailing">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/>
+            </svg>
+            <span style="margin-left:.35rem;">Call: 0491795610</span>
+          </a>
+
+          <a class="btn btn-primary" href="#contact">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Daylight Detailing home">
+          <span class="logoMark" aria-hidden="true"></span>
+          <span>
+            Daylight Detailing
+            <small>Mobile • Any car • Anywhere</small>
+          </span>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#services">Loyalty card</a>
+        </nav>
+
+        <div class="navactions">
+          <button class="btn btn-outline menuBtn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu" aria-label="Mobile">
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#services">Loyalty card</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>✔ Priced well Below Average detailing Rates</span>
+        <span>✔ No call out fee </span>
+        <span>✔ Loyalty Card – Save Up To 40%</span>
+        <span>✔ Quality Equipment & Experienced Team</span>
+        <span>✔ Mobile Service – We Come To You</span>
+
+        <span>✔ Priced well Below Average detailing Rates</span>
+        <span>✔ No call out fee </span>
+        <span>✔ Loyalty Card – Save Up To 40%</span>
+        <span>✔ Quality Equipment & Experienced Team</span>
+        <span>✔ Mobile Service – We Come To You</span>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <h1>Quality car care, at your doorstep.</h1>
+            <p>
+              Daylight Detailing offers professional mobile car detailing with a range of service options to suit different vehicles and customer needs — delivering a clean, well-presented car right at your doorstep. Want regular cleans? We have a loyalty programme giving multiple discounts up to 40% off!
+            </p>
+
+            <div class="cta">
+              <a class="btn btn-primary" href="#contact">Get a Quote</a>
+              <a class="btn btn-outline" href="#services">Explore Services</a>
+              <a class="btn btn-outline" href="tel:+0491795610">Call Now</a>
+            </div>
+
+            <div class="trustrow" aria-label="Highlights">
+              <span>✅ Mobile & Convenient</span>
+              <span>⭐ 5-Star Focus</span>
+              <span>🛡️ Safe Products</span>
+            </div>
+          </div>
+
+          <aside class="heroCard" aria-label="Featured Showcase Car">
+            <div class="photo">
+              <img src="Images/ExampleCar.jpg" alt="Showcase detailing finish on vehicle exterior" />
+            </div>
+            <div class="content">
+              <h3>Fast booking. Clean results. No drama.</h3>
+              <div class="muted">Same-week availability (when possible) • Transparent pricing • Pro gear</div>
+
+              <div class="meta">
+                <div>
+                  <b>Service Area</b>
+                  <span class="muted">Gold Coast & Surrounds</span>
+                </div>
+                <div>
+                  <b>Typical Time</b>
+                  <span class="muted">1.5–5 hrs</span>
+                </div>
+                <div>
+                  <b>Payment</b>
+                  <span class="muted">Cash / Bank Transfer</span>
+                </div>
+                <div>
+                  <b>Quality</b>
+                  <span class="muted">Daylight finish</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Services</h2>
+            <p>Structured like a premium detailing site: clear categories, strong CTAs, and easy navigation.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-img-wrapper">
+              <img src="Images/Examplecar2.jpg" alt="Standard Exterior Detail Package" />
+            </div>
+            <div class="card-body">
+              <span class="badge">Most Popular</span>
+              <h3>Standard Detail</h3>
+              <p>Exterior wash + dry, wheels, windows, quick interior refresh for a crisp weekly/monthly look.</p>
+              <a href="#contact">Request quote →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-img-wrapper">
+              <img src="Images/ExampleInterior1.jpg" alt="Full Interior Deep Clean Package" />
+            </div>
+            <div class="card-body">
+              <span class="badge">Deep Clean</span>
+              <h3>Full Interior Detail</h3>
+              <p>Seats, mats, plastics, crevices — a deep reset for daily drivers and family cars.</p>
+              <a href="#contact">Request quote →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-img-wrapper">
+              <img src="Images/EXample6.jpg" alt="Paint Enhancement & Machine Polishing" />
+            </div>
+            <div class="card-body">
+              <span class="badge">Gloss Upgrade</span>
+              <h3>Paint Enhancement</h3>
+              <p>Decontamination + polish-style enhancement to boost depth, clarity, and “wet” shine.</p>
+              <a href="#contact">Talk options →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-img-wrapper">
+              <img src="Images/Examplecar (1).jpg" alt="Pre-Sale Presentation Detail" />
+            </div>
+            <div class="card-body">
+              <span class="badge">Sale Ready</span>
+              <h3>Pre-Sale Detail</h3>
+              <p>Maximise first impressions: clean photos, clean cabin, clean paint — buyers love it.</p>
+              <a href="#contact">Book pre-sale →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="strip">
+          <div>
+            <h3>Regular customer?</h3>
+            <p>All customers receive a loyalty card that offers multiple discounts up to 40% off!</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#gallery">View Results</a>
+            <a class="btn btn-primary" href="#contact">Get an Express Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Before & After Results</h2>
+            <p>Real results showing our meticulous attention to detail on challenging interiors.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <div class="ba-group">
+            <div class="ba-group-title">Interior Seats Transformation</div>
+            <div class="ba-pair">
+              <div class="tile">
+                <img src="Images/BeforeInteriorSeats.jpg" alt="Dirty cloth car seats before detailing" />
+                <span class="tile-label">Before</span>
+              </div>
+              <div class="tile">
+                <img src="Images/AfterInteriorSeats.jpg" alt="Cleaned cloth car seats after professional extraction" />
+                <span class="tile-label">After</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ba-group">
+            <div class="ba-group-title">Console & Carpet Deep Clean (Yari)</div>
+            <div class="ba-pair">
+              <div class="tile">
+                <img src="Images/BeforeInteriorYARI.jpg" alt="Soiled car interior section before details" />
+                <span class="tile-label">Before</span>
+              </div>
+              <div class="tile">
+                <img src="Images/AfterInteriorYARI.jpg" alt="Restored pristine car interior section after details" />
+                <span class="tile-label">After</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ba-group">
+            <div class="ba-group-title">Rear Center Hump Mats & Carpets</div>
+            <div class="ba-pair">
+              <div class="tile">
+                <img src="Images/BeforeInteriorHUMP.jpg" alt="Dirty floor carpet hump before vacuuming and washing" />
+                <span class="tile-label">Before</span>
+              </div>
+              <div class="tile">
+                <img src="Images/AfterInteriorHUMP.jpg" alt="Spotless floor carpet hump after hot water extraction" />
+                <span class="tile-label">After</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ba-group">
+            <div class="ba-group-title">Driver Footwell & Pedals Zone</div>
+            <div class="ba-pair">
+              <div class="tile">
+                <img src="Images/BeforeInteriorPedz.jpg" alt="Driver foot area muddy and dusty before detailing" />
+                <span class="tile-label">Before</span>
+              </div>
+              <div class="tile">
+                <img src="Images/AfterInteriorPedz.jpg" alt="Driver foot zone completely vacuumed and treated" />
+                <span class="tile-label">After</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-extra">
+          <div class="tile" style="aspect-ratio: 16/10;">
+            <img src="Images/ExampleINterior2.jpg" alt="Meticulous dash cleaning details" />
+          </div>
+          <div class="tile" style="aspect-ratio: 16/10;">
+            <img src="Images/ExampleInterior3.jpg" alt="Deep vacuum line finishes" />
+          </div>
+          <div class="tile" style="aspect-ratio: 16/10;">
+            <img src="Images/ExampleInterior4.jpg" alt="Door card dressing application" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="background: linear-gradient(180deg, var(--soft), #FFFFFF); border-top:1px solid var(--line);">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>About Daylight Detailing</h2>
+            <p>
+              Premium results come from a simple formula: consistent process, quality tools, and attention to detail.
+              We aim for a clean, bright finish — like your car just rolled into daylight.
+            </p>
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <div class="quoteCard">
+            <div class="stars">★★★★★</div>
+            <p class="quote">“Best mobile detail I’ve had — paint looked deeper, interior looked brand new. Easy booking and super professional.”</p>
+            <div class="who">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <div>Customer Name</div>
+                <div class="muted">Standard Detail + Interior Refresh</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quoteCard">
+            <div class="stars">★★★★★</div>
+            <p class="quote">“Pre-sale detail helped the car present perfectly. Photos looked great and it sold quickly.”</p>
+            <div class="who">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <div>Customer Name</div>
+                <div class="muted">Pre-Sale Package</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Contact</h2>
+            <p>Fast quote form (like premium detailing sites). Replace placeholders with your real details.</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <form onsubmit="event.preventDefault(); alert('Thanks! Hook this up to your email/form service next.');">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+              <div>
+                <label for="name">Full Name</label>
+                <input id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" placeholder="Phone number here" required />
+              </div>
+            </div>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@email.com" required />
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+              <div>
+                <label for="service">Service</label>
+                <select id="service" name="service" required>
+                  <option value="">Select…</option>
+                  <option>Basic Clean</option>
+                  <option>Standard Detail</option>
+                  <option>Deep Clean</option>
+                  <option>Pre-Sale Detail</option>
+                  <option>Custom / Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="vehicle">Vehicle</label>
+                <input id="vehicle" name="vehicle" placeholder="e.g., Toyota Corolla" />
+              </div>
+            </div>
+
+            <label for="message">Notes</label>
+            <textarea id="message" name="message" placeholder="Tell us the condition, any stains/pet hair, and your location."></textarea>
+
+            <div style="display:flex; gap:.8rem; align-items:center; flex-wrap:wrap; margin-top: 1rem;">
+              <button class="btn btn-primary" type="submit">Send Quote Request</button>
+              <a class="btn btn-outline" href="tel:+0491795610">Call: 0491795610</a>
+            </div>
+
+            <p class="muted" style="margin:.9rem 0 0; font-weight:650;">
+              Tip: connect this form to EmailJS, Formspree, or your CRM later.
+            </p>
+          </form>
+
+          <div class="infoBox">
+            <div class="infoRow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--primary); margin-top:2px;">
+                <path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7zm0 9.5A2.5 2.5 0 1 0 12 6.5a2.5 2.5 0 0 0 0 5z"/>
+              </svg>
+              <div>
+                <b>Service Area</b>
+                <span>Mobile detailing — Gold Coast + surrounds</span>
+              </div>
+            </div>
+
+            <div class="infoRow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--primary); margin-top:2px;">
+                <path d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/>
+              </svg>
+              <div>
+                <b>Phone</b>
+                <span><a href="tel:+0491795610">0491795610</a></span>
+              </div>
+            </div>
+
+            <div class="infoRow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--primary); margin-top:2px;">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
+              </svg>
+              <div>
+                <b>Email</b>
+                <span><a href="mailto:hello@daylightdetailing.com">hello@daylightdetailing.com</a></span>
+              </div>
+            </div>
+
+            <div class="infoRow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--primary); margin-top:2px;">
+                <path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.6V6h-2v7l6 3.5 1-1.7z"/>
+              </svg>
+              <div>
+                <b>Hours</b>
+                <span>Mon–Sat: 8am – 4:30pm (by booking)</span>
+              </div>
+            </div>
+
+            <div class="spacer"></div>
+            <a class="btn btn-primary" href="#top" style="width:100%;">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footgrid">
+        <div>
+          <div style="display:flex; align-items:center; gap:.8rem; margin-bottom:.65rem;">
+            <span class="logoMark" aria-hidden="true" style="width:34px;height:34px; border-radius:12px;"></span>
+            <div style="font-weight:1000; font-size:1.1rem;">Daylight Detailing</div>
+          </div>
+          <div class="muted" style="color: rgba(255,255,255,.72); font-weight:650; max-width: 55ch;">
+            Premium mobile detailing with an aquatic-blue, clean-gold finish — built for trust, speed, and conversions.
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:1000; margin-bottom:.6rem;">Quick Links</div>
+          <div style="display:grid; gap:.5rem; font-weight:750;">
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#services">Loyalty card</a>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:1000; margin-bottom:.6rem;">Book</div>
+          <div style="display:grid; gap:.55rem; font-weight:750;">
+            <a href="tel:+0491795610">Call: 0491795610</a>
+            <a href="mailto:hello@daylightdetailing.com">hello@daylightdetailing.com</a>
+            <a class="btn btn-primary" href="#contact" style="width:max-content;">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fineprint">
+        <div>&copy; <span id="year"></span> Daylight Detailing. All rights reserved.</div>
+        <div style="opacity:.9;">ABN: 83 300 980 958</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        const open = menu.style.display === 'block';
+        menu.style.display = open ? 'none' : 'block';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    }
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

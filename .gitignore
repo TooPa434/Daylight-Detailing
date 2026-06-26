@@ -1,0 +1,9 @@
+node_modules/
+daylight.db
+.env
+.DS_Store
+*.log
+dist/
+build/
+.vercel
+.env.local
