@@ -622,11 +622,15 @@
       margin: 0;
       font-size: 1rem;
     }
-    .review-service {
-      color: var(--muted);
-      font-weight: 600;
-      font-size: .9rem;
-      margin: .2rem 0 0;
+    .review-name a,
+    .review-text a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .review-name a:hover,
+    .review-text a:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
     .review-stars {
       color: var(--gold);
@@ -646,6 +650,71 @@
       font-size: .85rem;
       font-weight: 600;
       margin-top: .6rem;
+    }
+
+    .review-us {
+      padding-top: 2.4rem;
+      padding-bottom: .8rem;
+    }
+    .review-us-card {
+      background: linear-gradient(135deg, #0f1a31, #122242 55%, #15315d);
+      color: white;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 1.35rem;
+      box-shadow: 0 18px 38px rgba(11,18,32,.22);
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1rem;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .review-us-card:before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background: radial-gradient(circle at 15% 20%, rgba(56,144,240,.28), transparent 55%),
+                  radial-gradient(circle at 85% 70%, rgba(214,178,94,.22), transparent 58%);
+      pointer-events: none;
+    }
+    .review-us-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .review-us-copy h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      letter-spacing: -.2px;
+    }
+    .review-us-copy p {
+      margin: .6rem 0 0;
+      color: rgba(255,255,255,.88);
+      font-weight: 650;
+      max-width: 62ch;
+    }
+    .review-us-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: white;
+      color: #0E2A56;
+      border-color: transparent;
+    }
+    .btn-white:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.22);
+    }
+    @media (max-width: 900px) {
+      .review-us-card {
+        grid-template-columns: 1fr;
+      }
+      .review-us-actions {
+        justify-content: flex-start;
+      }
     }
 
     /* ===== LIGHTBOX ZOOM ===== */
@@ -784,6 +853,7 @@
           <a href="#services">Services</a>
           <a href="#gallery">Gallery</a>
           <a href="#about">About</a>
+          <a href="#review-us">Review Us</a>
           <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -797,6 +867,7 @@
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#about">About</a>
+        <a href="#review-us">Review Us</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </div>
@@ -995,6 +1066,20 @@
       </div>
     </section>
 
+    <section id="review-us" class="review-us">
+      <div class="container">
+        <div class="review-us-card">
+          <div class="review-us-copy">
+            <h2>Review Us!</h2>
+          </div>
+          <div class="review-us-actions">
+            <a class="btn btn-white" href="https://maps.app.goo.gl/cV9dBTGmHnJZfrMD9" target="_blank" rel="noopener noreferrer">Leave a Google Review</a>
+            <a class="btn btn-ghost" href="https://maps.app.goo.gl/cV9dBTGmHnJZfrMD9" target="_blank" rel="noopener noreferrer">Read Google Reviews</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
 
 
@@ -1112,7 +1197,6 @@
         <div class="sectionHead">
           <div>
             <h2>Customer Reviews</h2>
-            <p>Read what our customers have to say about our detailing services.</p>
           </div>
         </div>
 
@@ -1194,6 +1278,7 @@
 
     // ===== API BASE URL =====
     const API_BASE = '/api';
+    const GOOGLE_REVIEWS_URL = 'https://maps.app.goo.gl/cV9dBTGmHnJZfrMD9';
 
     // ===== CONTACT FORM HANDLER =====
     async function handleContactSubmit(event) {
@@ -1294,12 +1379,11 @@
               <div class="review-header">
                 <div class="review-avatar">${initial}</div>
                 <div class="review-meta">
-                  <p class="review-name">${review.userName}</p>
-                  <p class="review-service">${review.service}</p>
+                  <p class="review-name"><a href="${GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener noreferrer">${review.userName}</a></p>
                 </div>
               </div>
               <div class="review-stars">${stars}</div>
-              <p class="review-text">"${review.text}"</p>
+              <p class="review-text"><a href="${GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener noreferrer">"${review.text}"</a></p>
               <p class="review-date">${date}</p>
             </div>
           `;

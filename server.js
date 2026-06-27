@@ -13,6 +13,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
+// Serve homepage at root on platforms expecting an explicit / route.
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'website.html'));
+});
+
 // ===== API ENDPOINTS =====
 
 // Contact form submission
